@@ -1,0 +1,20 @@
+{
+  "name": "karte.io bot sample server",
+  "description": "karte.io bot sample server",
+  "repository": "https://github.com/plaidev/karte-io-bot-sample-v2",
+  "logo": "https://karte.io/commons/images/common/logo.png",
+  "keywords": ["node", "express", "karte"],
+  "env": {
+    "LD_LIBRARY_PATH": {
+      "value": "/app/.linuxbrew/lib"
+    },
+  },
+  "buildpacks": [
+    {
+      "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
+    }
+    {
+      "url": "https://github.com/sunny4381/heroku-buildpack-linuxbrew.git"
+    }
+  ]
+}

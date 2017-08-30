@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  style.
+    label {
+      display: block
+    }
+  h1= title
+  form(method="POST", action="/setting")
+    each i in ['KARTE_URL', 'KARTE_API_KEY', 'KARTE_SECRET_KEY', 'ZENDESK_ACCOUNT_EMAIL', 'ZENDESK_ACCOUNT_PASSWORD']
+      label
+        | #{i}
+        input(type="text", name="#{i}", value="#{config[i]}")
+    button(type="submit") 設定
