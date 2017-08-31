@@ -163,7 +163,7 @@ router.post('/operator', (req, res, next) => {
             texts = [
               'ご質問ありがとうございます。',
               'もしかしたら、これらの記事が役に立つかもしれません。',
-              _makeLinkMessageStr(result.hits),
+              _make_link_message_str(result.hits),
               '`{"type":"buttons","buttons":[{"title":"質問を終える"},{"title":"まだ質問する"}]}`'
             ];
             return _send_delayed_msgs(user_id, texts);
@@ -212,7 +212,7 @@ const _send_delayed_msgs = (user_id, texts) => {
   return Promise.all(promises);
 };
 
-const _makeLinkMessageStr = (links) => {
+const _make_link_message_str = (links) => {
   // link UI example:
   // '`{"type":"links","links":[{"title":"PLAID公式サイト","url":"https://plaid.co.jp/"},{"title":"KARTE公式サイト","url":"https://karte.io/"}]}`'
   let str = '`{"type":"links","links":[';
