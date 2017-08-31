@@ -2,21 +2,23 @@
 - KARTEのmessageとassignのWebhookやAPIを使ったbotのサンプルです.
 
 ## 使い方
-- [ ] `npm start`で5000番でサーバーを立ち上げる.
-- [ ] `_config.coffee`ファイルを作成し、必要な設定値を追加する.
+- [ ] KARTE管理画面から、botの設定を行います.
+- [ ] `config.js`ファイルに必要な設定値を追加します.
     - 以下のような内容で作成してください.
 
-```coffee
+```js
 module.exports = {
-  KARTE_URL: "https://t.karte.io"
-  KARTE_BOT_APPLICATION_KEY: "bot設定画面のApplicationKeyを設定"
-  KARTE_BOT_SECRET_KEY: "bot設定画面のSecretKeyを設定"
-  ALGOLIA_APPLICATION_ID: "AlgoliaのApplicationIdを設定(Algolia検索を使う場合)"
-  ALGOLIA_API_KEY: "AlgoliaのApiKeyを設定(Algolia検索を使う場合)"
-  ALGOLIA_INDEX_NAME: "AlgoliaのIndexNameを設定(Algolia検索を使う場合)"
+  KARTE_URL: "https://t.karte.io",
+  KARTE_BOT_APPLICATION_KEY: "bot設定画面のApplicationKeyを設定",
+  KARTE_BOT_SECRET_KEY: "bot設定画面のSecretKeyを設定",
+  ALGOLIA_APPLICATION_ID: "AlgoliaのApplicationIdを設定(Algolia検索を使う場合)",
+  ALGOLIA_API_KEY: "AlgoliaのApiKeyを設定(Algolia検索を使う場合)",
+  ALGOLIA_INDEX_NAME: "AlgoliaのIndexNameを設定(Algolia検索を使う場合)",
   A3RT_API_KEY: "A3RTのApiKeyを設定(A3RT APIを使う場合)"
 }
 ```
+
+- [ ] `npm start`で、port:5000番でサーバーが立ち上がります.
 
 ## bot仕様
 - `/echo`
