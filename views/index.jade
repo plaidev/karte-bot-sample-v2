@@ -2,8 +2,3 @@ extends layout
 
 block content
   h1= title
-  h2 redirect tracking
-  a(href="http://localhost:8010/v0/track?app_key=#{KARTE_APP_PUBLIC_KEY}&response=redirect&redirect_to=https://google.co.jp&data=%7B%22keys%22%3A%7B%22user_id%22%3A%22bot%22%7D%2C%22event_name%22%3A%22bot_sample_server_view_redirect%22%2C%22values%22%3A%7B%7D%7D" target="_blank") redirect test -> google
-  h2 1x1 gif tracking
-  img(src="http://localhost:8010/v0/track?app_key=#{KARTE_APP_PUBLIC_KEY}&response=image&data=%7B%22keys%22%3A%7B%22user_id%22%3A%22bot%22%7D%2C%22event_name%22%3A%22bot_sample_server_view_image%22%2C%22values%22%3A%7B%7D%7D")
-

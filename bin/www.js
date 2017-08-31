@@ -1,8 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 /**
  * Module dependencies.
  */
@@ -15,7 +10,7 @@ const http = require('http');
  * Normalize a port into a number, string, or false.
  */
 
-const normalizePort = function(val) {
+const normalizePort = (val) => {
   let port;
   port = parseInt(val, 10);
   if (isNaN(port)) {
@@ -40,7 +35,7 @@ const port = normalizePort(process.env.PORT || '5000');
  * Event listener for HTTP server "error" event.
  */
 
-const onError = function(error) {
+const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -64,7 +59,7 @@ const onError = function(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-const onListening = function() {
+const onListening = () => {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
@@ -76,7 +71,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

@@ -1,21 +1,14 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-
 const request = require('request');
 const crypto = require('crypto');
 
-const _signature = function(secret_key, body) {
+const _signature = (secret_key, body) => {
   const signature = crypto.createHmac('sha256', secret_key).update(new Buffer(body, 'utf8')).digest('base64');
   return signature;
 };
 
-module.exports = function(path, body, cb) {
+module.exports = (path, body, cb) => {
 
-  if (cb == null) { cb = function(){}; }
+  if (!cb) { cb = () => {}; }
   const {KARTE_URL, KARTE_BOT_APPLICATION_KEY, KARTE_BOT_SECRET_KEY} = require('../config');
 
   const public_key = KARTE_BOT_APPLICATION_KEY;
@@ -32,7 +25,7 @@ module.exports = function(path, body, cb) {
       'X-KARTE-App-Key': `${public_key}`,
       'Authorization': `KARTE0-HMAC-SHA256 TimeStamp=\"${timestamp}\",Signature=\"${signature}\"`
     }
-  }, function(err, res, body) {
+  }, (err, res, body) => {
 
     if (err) {
       console.log(err);

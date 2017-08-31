@@ -1,15 +1,8 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-
 const request = require('request');
 
-module.exports = function(path, body, cb) {
+module.exports = (path, body, cb) => {
 
-  if (cb == null) { cb = function(){}; }
+  if (!cb) { cb = () => {}; }
   const {KARTE_URL, KARTE_BOT_APPLICATION_KEY} = require('../config');
   
   const public_key = KARTE_BOT_APPLICATION_KEY;
@@ -21,7 +14,7 @@ module.exports = function(path, body, cb) {
       'Content-Type': 'application/json',
       'X-KARTE-App-Key': `${public_key}`
     }
-  }, function(err, res, body) {
+  }, (err, res, body) => {
 
     if (err) {
       console.log(err);

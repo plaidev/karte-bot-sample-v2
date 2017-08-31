@@ -1,10 +1,3 @@
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const express = require('express');
 const router = express.Router();
 const algoliasearch = require('algoliasearch');
@@ -14,7 +7,7 @@ const _send_hmac = require('../logics/_send_hmac');
 const _search = require('../logics/_search');
 
 // webhook
-router.post('/echo', function(req, res, next) {
+router.post('/echo', (req, res, next) => {
 
   let app_name, content;
   const {KARTE_BOT_APPLICATION_KEY} = require('../config');
@@ -35,7 +28,7 @@ router.post('/echo', function(req, res, next) {
         content: {
           text: `僕はエコーサーバーです: ${content.text}`
         }
-      }, function(err) {
+      }, (err) => {
         
         if (err) {
           return console.log(err);
@@ -46,7 +39,7 @@ router.post('/echo', function(req, res, next) {
       _send('assign', {
         user_id,
         assignee: `bot-${KARTE_BOT_APPLICATION_KEY}`
-      }, function(err) {
+      }, (err) => {
         
         if (err) {
           return console.log(err);
@@ -73,7 +66,7 @@ router.post('/echo', function(req, res, next) {
 });
 
 // webhook
-router.post('/a3rt', function(req, res, next) {
+router.post('/a3rt', (req, res, next) => {
 
   const {KARTE_BOT_APPLICATION_KEY} = require('../config');
 
@@ -85,7 +78,7 @@ router.post('/a3rt', function(req, res, next) {
     const {app_name, message_id, thread_id, content} = data;
 
     if (assignee === (`bot-${KARTE_BOT_APPLICATION_KEY}`)) {
-      _a3rt(content.text, function(err, text) {
+      _a3rt(content.text, (err, text) => {
 
         if (err) {
           console.log(err);
@@ -98,7 +91,7 @@ router.post('/a3rt', function(req, res, next) {
           content: {
             text
           }
-        }, function(err) {
+        }, (err) => {
           
           if (err) {
             return console.log(err);
@@ -114,7 +107,7 @@ router.post('/a3rt', function(req, res, next) {
 });
 
 // webhook
-router.post('/operator', function(req, res, next) {
+router.post('/operator', (req, res, next) => {
   const {KARTE_BOT_APPLICATION_KEY} = require('../config');
   const {data, user, event_type} = req.body;
   const {user_id, assignee} = user;
@@ -157,7 +150,7 @@ router.post('/operator', function(req, res, next) {
         _search({
           text: content.text,
           count: 5
-        }, function(err, result) {
+        }, (err, result) => {
           let texts;
           if (err) { console.log(err); }
           if ((result.count === 0) || err) {
@@ -184,7 +177,7 @@ router.post('/operator', function(req, res, next) {
   });
 });
 
-var _unassign = user_id =>
+const _unassign = user_id =>
   // アサインを外す
   _send('assign', {
     user_id,
@@ -193,17 +186,17 @@ var _unassign = user_id =>
       // 同時に「対応済み」にする
       finish_responding: true
     }
-  }, function(err) {
+  }, (err) => {
     if (err) {
       return console.log(err);
     }
   })
 ;
 
-var _send_delayed_msgs = function(user_id, texts) {
+const _send_delayed_msgs = (user_id, texts) => {
   if (!texts) { return; }
   const promises = texts.map((txt, i) =>
-    new Promise(function(resolve, reject) {
+    new Promise((resolve, reject) => {
       return setTimeout(() =>
         _send('message', {
           app_name: 'webchat',
@@ -219,7 +212,7 @@ var _send_delayed_msgs = function(user_id, texts) {
   return Promise.all(promises);
 };
 
-var _makeLinkMessageStr = function(links) {
+const _makeLinkMessageStr = (links) => {
   // link UI example:
   // '`{"type":"links","links":[{"title":"PLAID公式サイト","url":"https://plaid.co.jp/"},{"title":"KARTE公式サイト","url":"https://karte.io/"}]}`'
   let str = '`{"type":"links","links":[';

@@ -1,15 +1,8 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
-
 const request = require('request');
 
-module.exports = function(text, cb) {
+module.exports = (text, cb) => {
 
-  if (cb == null) { cb = function(){}; }
+  if (!cb) { cb = () => {}; }
   const {A3RT_API_KEY} = require('../config');
   
   return request.post({
@@ -18,7 +11,7 @@ module.exports = function(text, cb) {
       apikey: A3RT_API_KEY,
       query: text
     }
-  }, function(err, res, body) {
+  }, (err, res, body) => {
 
     if (err) {
       console.log(err);
