@@ -2,3 +2,4 @@
 /npm-debug.log
 /Procfile
 /.buildpacks
+/config.js
