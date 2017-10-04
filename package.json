@@ -2,7 +2,7 @@
   "name": "karte-io-bot-sample",
   "version": "0.0.0",
   "private": true,
-  "main": "app.coffee",
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
