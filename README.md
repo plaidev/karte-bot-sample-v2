@@ -8,9 +8,10 @@
 
 ```js
 module.exports = {
-  KARTE_URL: "https://t.karte.io",
-  KARTE_BOT_APPLICATION_KEY: "bot設定画面のApplicationKeyを設定",
-  KARTE_BOT_SECRET_KEY: "bot設定画面のSecretKeyを設定",
+  KARTE_URL: "https://api.karte.io",
+  CLIENT_ID: "bot設定画面のClient Idを設定",
+  API_KEY: "KARTE管理画面のAPIキーを設定",
+  TOKEN: 'bot設定画面のトークンを設定',
   ALGOLIA_APPLICATION_ID: "AlgoliaのApplicationIdを設定(Algolia検索を使う場合)",
   ALGOLIA_API_KEY: "AlgoliaのApiKeyを設定(Algolia検索を使う場合)",
   ALGOLIA_INDEX_NAME: "AlgoliaのIndexNameを設定(Algolia検索を使う場合)",
