@@ -10,7 +10,7 @@ module.exports = (path, body, cb) => {
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Authorization': `Bearer ${TOKEN}`
+      Authorization: `Bearer ${TOKEN}`
     }
   }, (err, res, body) => {
 

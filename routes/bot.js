@@ -3,7 +3,6 @@ const router = express.Router();
 const algoliasearch = require('algoliasearch');
 const _send = require('../logics/_send');
 const _a3rt = require('../logics/_a3rt');
-const _send_hmac = require('../logics/_send_hmac');
 const _search = require('../logics/_search');
 
 
@@ -11,21 +10,21 @@ const _search = require('../logics/_search');
 router.post('/echo', (req, res, next) => {
 
   const {CLIENT_ID, API_KEY} = require('../config');
-  const {event_type, user_id, assignee, app_name, message_id, thread_id, content, from_user} = req.body;
+  const {event_type, user_id, assignee, app_name, content} = req.body;
   
   if (event_type === 'message') {
 
     // 自分がアサインされていたら、メッセージを送る
     if (assignee.id === CLIENT_ID) {
       _send('message', {
-        'client_id': CLIENT_ID,
-        'api_key': API_KEY,
+        client_id: CLIENT_ID,
+        api_key: API_KEY,
         app_name,
         user_id,
         content: {
           text: `僕はエコーサーバーです: ${content.text}`
         },
-        'from_user': false
+        from_user: false
       }, (err) => {
         
         if (err) {
@@ -35,12 +34,12 @@ router.post('/echo', (req, res, next) => {
     } else {
     // 自分がアサインされていなければ、有無を言わさずアサインする
       _send('assign', {
-        'client_id': CLIENT_ID,
-        'api_key': API_KEY,
+        client_id: CLIENT_ID,
+        api_key: API_KEY,
         user_id,
         assignee:{
-          "id":CLIENT_ID,
-          "is_bot":true
+          id:CLIENT_ID,
+          is_bot:true
         }
       }, (err) => {
         
@@ -54,14 +53,14 @@ router.post('/echo', (req, res, next) => {
 
     if (assignee.id === CLIENT_ID) {
       _send('message', {
-        'client_id': CLIENT_ID,
-        'api_key': API_KEY,
+        client_id: CLIENT_ID,
+        api_key: API_KEY,
         app_name: 'webchat',
         user_id,
         content: {
           text: 'こんにちわ。わたしKARTE Botが担当します。 '
         },
-        'from_user': false
+        from_user: false
       });
     }
   }
@@ -75,7 +74,7 @@ router.post('/echo', (req, res, next) => {
 router.post('/a3rt', (req, res, next) => {
 
   const {CLIENT_ID, API_KEY} = require('../config');
-  const {event_type, user_id, assignee, app_name, message_id, thread_id, content, from_user} = req.body;
+  const {event_type, user_id, assignee, app_name, content} = req.body;
 
   if (event_type === 'message') {
 
@@ -89,14 +88,14 @@ router.post('/a3rt', (req, res, next) => {
         }
 
         return _send('message', {
-          'client_id': CLIENT_ID,
-          'api_key': API_KEY,
+          client_id: CLIENT_ID,
+          api_key: API_KEY,
           app_name,
           user_id,
           content: {
             text
           },
-          'from_user': false
+          from_user: false
         }, (err) => {
           
           if (err) {
@@ -115,7 +114,7 @@ router.post('/a3rt', (req, res, next) => {
 // webhook
 router.post('/operator', (req, res, next) => {
   const {CLIENT_ID, API_KEY} = require('../config');
-  const {event_type, user_id, assignee, app_name, message_id, thread_id, content, from_user} = req.body;
+  const {event_type, user_id, assignee, content} = req.body;
   if (event_type === 'assign') {
     if (assignee.id === CLIENT_ID) {
       _send_delayed_msgs(user_id, [
@@ -213,7 +212,7 @@ const _send_delayed_msgs = (user_id, texts, client_id, api_key) => {
           content: {
             text: txt
           },
-          'from_user': false
+          from_user: false
         }, resolve)
       
       , i * 1000);

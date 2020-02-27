@@ -8,4 +8,3 @@ module.exports = {
   ALGOLIA_INDEX_NAME: "",
   A3RT_API_KEY: ""
 };
-
