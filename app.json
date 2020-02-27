@@ -7,12 +7,12 @@
   "env": {
     "LD_LIBRARY_PATH": {
       "value": "/app/.linuxbrew/lib"
-    },
+    }
   },
   "buildpacks": [
     {
       "url": "https://github.com/stomita/heroku-buildpack-phantomjs"
-    }
+    },
     {
       "url": "https://github.com/sunny4381/heroku-buildpack-linuxbrew.git"
     }

@@ -12,7 +12,6 @@ module.exports = (text, cb) => {
       query: text
     }
   }, (err, res, body) => {
-
     if (err) {
       console.log(err);
       return cb(err);

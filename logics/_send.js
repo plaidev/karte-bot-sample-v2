@@ -3,16 +3,14 @@ const request = require('request');
 module.exports = (path, body, cb) => {
 
   if (!cb) { cb = () => {}; }
-  const {KARTE_URL, KARTE_BOT_APPLICATION_KEY} = require('../config');
+  const {KARTE_URL, TOKEN} = require('../config');
   
-  const public_key = KARTE_BOT_APPLICATION_KEY;
-
   return request.post({
-    url: KARTE_URL + `/v0/${path}`,
+    url: KARTE_URL + `/v1/talk/${path}`,
     body: JSON.stringify(body),
     headers: {
-      'Content-Type': 'application/json',
-      'X-KARTE-App-Key': `${public_key}`
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: `Bearer ${TOKEN}`
     }
   }, (err, res, body) => {
 
@@ -29,6 +27,7 @@ module.exports = (path, body, cb) => {
     }
 
     if (body.error) {
+      console.log(body)
       return cb(new Error(body.error));
     }
 
